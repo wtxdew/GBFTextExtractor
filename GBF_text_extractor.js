@@ -37,12 +37,12 @@ function notifyText()
     }
 }
 
-function notifyVisual(messageBlock)
+function notifyVisual(block)
 {
     // Add visual notification
-    messageBlock.style.transition = 'background-color 0.5s';
-    messageBlock.style.backgroundColor = 'yellow';
-    setTimeout(() => { messageBlock.style.backgroundColor = ''; },
+    block.style.transition = 'background-color 0.5s';
+    block.style.backgroundColor = 'yellow';
+    setTimeout(() => { block.style.backgroundColor = ''; },
                500); // Change to desired duration (in milliseconds)
 }
 
@@ -64,6 +64,7 @@ function setupTextExtraction()
         return; // Exit if the target node is not found
     // If the initial style is already 'block', extract text immediately
     if (targetNode.style.display === 'block') {
+        notifyVisual(targetNode);
         extractText();
         return;
     }
@@ -83,5 +84,5 @@ document.addEventListener('keydown', function(event) {
 });
 
 const contentArea = document.querySelector('.contents');
-contentArea.addEventListener('click', function() { extractText(); });
+contentArea.addEventListener('click', function() { setupTextExtraction(); });
 })();
